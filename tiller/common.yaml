@@ -1,0 +1,14 @@
+exec: '/usr/sbin/nginx'
+#data_sources: [ 'defaults', 'file', 'environment' ]
+data_sources: [ 'file', 'environment' ]
+template_sources: [ 'file' ]
+
+#defaults:
+#    global:
+#        env_upstream1: 'localhost:8080'
+#        env_upstream2: 'localhost:8081'
+
+environments:
+    development:
+        default.erb:
+            target: '/etc/nginx/sites-enabled/default'

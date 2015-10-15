@@ -1,10 +1,10 @@
 # default
 #
 
-upstream localhost {
+upstream local {
         sticky;
-        server localhost:8080;
-        server localhost:8081;
+        server <%= env_upstream1 %>;
+        server <%= env_upstream2 %>;
         keepalive 32;
         check interval=2000 rise=4 fall=2 timeout=1000 type=http;
         check_http_send "HEAD /  HTTP/1.0\r\n\r\n";
@@ -13,14 +13,14 @@ upstream localhost {
 
 server {
         listen 80 default_server;
-        #listen 443 ssl default_server;
+        listen 443 ssl default_server;
         server_name _;
         root /var/www/html;
 
-        #ssl_certificate     /etc/ssl/nginx/nec-display-solutions_com-combined.crt;
-        #ssl_certificate_key /etc/ssl/nginx/nec_server_private.key;
-        #ssl_protocols       SSLv3 TLSv1 TLSv1.1 TLSv1.2;
-        #ssl_ciphers         RC4:HIGH:!aNULL:!MD5;
+        ssl_certificate     /etc/nginx/certs/nginx.crt;
+        ssl_certificate_key /etc/nginx/certs/nginx.key;
+        ssl_protocols       SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers         RC4:HIGH:!aNULL:!MD5;
 
         location / {
             proxy_pass  http://localhost;
