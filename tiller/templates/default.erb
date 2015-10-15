@@ -1,7 +1,7 @@
 # default
 #
 
-upstream local {
+upstream localupstream {
         sticky;
         server <%= env_upstream1 %>;
         server <%= env_upstream2 %>;
@@ -23,7 +23,7 @@ server {
         ssl_ciphers         RC4:HIGH:!aNULL:!MD5;
 
         location / {
-            proxy_pass  http://localhost;
+            proxy_pass  http://localupstream;
         }
 
 
