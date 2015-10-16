@@ -6,7 +6,7 @@ upstream localupstream {
         server <%= env_upstream1 %>;
         server <%= env_upstream2 %>;
         keepalive 32;
-        check interval=2000 rise=4 fall=2 timeout=1000 type=http;
+        check interval=2000 rise=3 fall=1 timeout=1000 type=http;
         check_http_send "HEAD /  HTTP/1.0\r\n\r\n";
         check_http_expect_alive http_2xx http_3xx;
 }
