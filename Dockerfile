@@ -30,6 +30,7 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # copy basic nginx conf
 COPY conf.d /etc/nginx/conf.d
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY proxy_params.conf /etc/nginx/proxy_params.conf
 COPY certs /etc/nginx/certs
 
 # copy tiller conf
